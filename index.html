@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="form_validation.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact Us</a>
+        <div class="dropdown">
+          <button class="dropbtn">
+            Courses Offered
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">C</a>
+            <a href="#">C++</a>
+            <a href="#">Java</a>
+            <a href="#">Python</a>
+            <a href="#">javascript</a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h1 class="text-align">COURSE REGISTRATION</h1>
+      </div>
+      <div class="tab-container">
+        <table>
+          <tr>
+            <th>Course</th>
+            <th>Price</th>
+            <th>Duration</th>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td>Rs.1000</td>
+            <td>3 Months</td>
+          </tr>
+          <tr>
+            <td>C++</td>
+            <td>Rs.1000</td>
+            <td>3 Months</td>
+          </tr>
+          <tr>
+            <td>Java</td>
+            <td>Rs.1000</td>
+            <td>3 Months</td>
+          </tr>
+          <tr>
+            <td>Python</td>
+            <td>Rs.1000</td>
+            <td>3 Months</td>
+          </tr>
+          <tr>
+            <td>javascript</td>
+            <td>Rs.1000</td>
+            <td>3 Months</td>
+          </tr>
+        </table>
+      </div>
+      <form id="myForm">
+        <ul class="form-style-1">
+          <li>
+            <label>Name <span class="required">*</span></label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="first"
+              class="field-long"
+            />
+            <span
+              id="usernameError"
+              class="error"
+              style="display: none; color: red"
+            ></span>
+          </li>
+          <li>
+            <label>Email <span class="required">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="field-long"
+              placeholder="email"
+            />
+            <span
+              id="emailError"
+              class="error"
+              style="display: none; color: red"
+            ></span>
+          </li>
+          <li>
+            <label>Gender</label>
+            <select name="field8" class="field-select">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </li>
+          <li>
+            <label>Course</label>
+            <select name="field4" class="field-select">
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="Java">Java</option>
+              <option value="python">Python</option>
+              <option value="script">javascript</option>
+            </select>
+          </li>
+
+          <li>
+            <label>Contact No <span class="required">*</span></label>
+            <input
+              type="number"
+              name="field6"
+              class="field-long"
+              placeholder="9709371717"
+            />
+          </li>
+          <li>
+            <label>Address<span class="required">*</span></label>
+            <input
+              type="text"
+              name="field7"
+              class="field-long"
+              placeholder="address"
+            />
+          </li>
+          <li>
+            <label>Password<span class="required">*</span></label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="field-long"
+              placeholder="Password"
+              style="padding: 5px"
+            />
+          </li>
+          <li>
+            <label>Confirm Password<span class="required">*</span></label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              class="field-long"
+              placeholder="Confirm Password"
+              style="padding: 5px"
+            />
+            <span
+              id="confirmPasswordError"
+              class="error"
+              style="display: none; color: red"
+            ></span>
+          </li>
+          <li>
+            <input type="submit" value="Submit" />
+          </li>
+        </ul>
+      </form>
+    </div>
+    <script>
+      const form = document.getElementById("myForm");
+      const usernameInput = document.getElementById("username");
+      const usernameError = document.getElementById("usernameError");
+
+      form.addEventListener("submit", (event) => {
+        let isValid = true;
+        if (usernameInput.value.length < 5) {
+          event.preventDefault();
+          usernameError.textContent =
+            "Username must be at least 5 characters long";
+          isValid = false;
+          usernameError.style.display = "block";
+        } else {
+          usernameError.style.display = "none";
+        }
+
+        const emailInput = document.getElementById("email");
+        const emailError = document.getElementById("emailError");
+
+        emailInput.addEventListener("input", () => {
+          if (!emailInput.checkValidity()) {
+            event.preventDefault();
+            emailError.textContent = "email must be valid";
+            isValid = false;
+            emailError.style.display = "block";
+          } else {
+            emailError.style.display = "none";
+          }
+        });
+
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput = document.getElementById("confirmPassword");
+        const confirmPasswordError = document.getElementById(
+          "confirmPasswordError"
+        );
+
+        confirmPasswordInput.addEventListener("input", () => {
+          if (confirmPasswordInput.value !== passwordInput.value) {
+            confirmPasswordError.textContent = "Passwords do not match";
+            isValid = false;
+            confirmPasswordError.style.display = "block";
+          } else {
+            confirmPasswordError.style.display = "none";
+          }
+        });
+
+        if (isValid) {
+          event.preventDefault();
+          window.location.href = "thank_you.html";
+        } else {
+          alert("Fill all fields");
+        }
+      });
+    </script>
+  </body>
+</html>
